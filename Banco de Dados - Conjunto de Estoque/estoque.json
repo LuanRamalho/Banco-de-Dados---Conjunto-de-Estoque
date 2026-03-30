@@ -1,0 +1,31 @@
+[
+  {
+    "Nome": "Armazém",
+    "Produtos": [
+      {
+        "Nome": "Arroz (1KG)",
+        "Quantidade": 50,
+        "Fornecedor": "Tio João",
+        "Preco": 3.55
+      },
+      {
+        "Nome": "Feijão",
+        "Quantidade": 75,
+        "Fornecedor": "Kicaldo",
+        "Preco": 3.45
+      },
+      {
+        "Nome": "Macarrão",
+        "Quantidade": 50,
+        "Fornecedor": "Adria",
+        "Preco": 3.5
+      },
+      {
+        "Nome": "Biscoito Maizena",
+        "Quantidade": 120,
+        "Fornecedor": "Piraquê",
+        "Preco": 3.0
+      }
+    ]
+  }
+]
