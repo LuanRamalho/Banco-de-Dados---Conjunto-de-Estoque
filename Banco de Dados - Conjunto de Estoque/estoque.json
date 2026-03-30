@@ -25,6 +25,71 @@
         "Quantidade": 120,
         "Fornecedor": "Piraquê",
         "Preco": 3.0
+      },
+      {
+        "Nome": "Milho de Pipoca (500g)",
+        "Quantidade": 75,
+        "Fornecedor": "Gran Fino",
+        "Preco": 4.55
+      },
+      {
+        "Nome": "Ervilha (500g)",
+        "Quantidade": 45,
+        "Fornecedor": "Gran Fino",
+        "Preco": 3.35
+      }
+    ]
+  },
+  {
+    "Nome": "Papelaria",
+    "Produtos": [
+      {
+        "Nome": "Papel de Embrulhar Presentes",
+        "Quantidade": 500,
+        "Fornecedor": "Ki Festa",
+        "Preco": 0.85
+      },
+      {
+        "Nome": "Folha de Papel A4",
+        "Quantidade": 100,
+        "Fornecedor": "Chamequinho",
+        "Preco": 5.0
+      },
+      {
+        "Nome": "Fichário Escolar",
+        "Quantidade": 100,
+        "Fornecedor": "Tilibra",
+        "Preco": 25.0
+      },
+      {
+        "Nome": "Bloco de Anotações",
+        "Quantidade": 500,
+        "Fornecedor": "Nosso Bloco",
+        "Preco": 2.25
+      },
+      {
+        "Nome": "Mochila Escolar",
+        "Quantidade": 20,
+        "Fornecedor": "Travelcross",
+        "Preco": 125.5
+      },
+      {
+        "Nome": "Caneta Azul",
+        "Quantidade": 100,
+        "Fornecedor": "Bic",
+        "Preco": 0.75
+      },
+      {
+        "Nome": "Caneta Vermelha",
+        "Quantidade": 100,
+        "Fornecedor": "Bic",
+        "Preco": 0.75
+      },
+      {
+        "Nome": "Marca Texto",
+        "Quantidade": 125,
+        "Fornecedor": "Text Mark",
+        "Preco": 1.15
       }
     ]
   }
