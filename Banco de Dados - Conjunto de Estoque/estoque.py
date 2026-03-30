@@ -221,21 +221,23 @@ class StoreWindow(tk.Toplevel):
 
 
 # ==========================================
-# 3. MAIN FORM (LISTA DE LOJAS)
+# 3. MAIN FORM (LISTA DE LOJAS COM BUSCA)
 # ==========================================
 class MainWindow(tk.Tk):
     def __init__(self):
         super().__init__()
         self.nome_loja_original = ""
+        self.lojas_completas = [] # Cache para busca eficiente
 
         self.title("Gerenciador de Comércio - Lojas (JSON)")
-        self.geometry("600x500")
+        self.geometry("600x600") # Aumentei um pouco a altura para acomodar a busca
         self.configure(bg="#2C3E50")
         
         self.configurar_interface()
         self.carregar_lojas()
 
     def configurar_interface(self):
+        # --- Painel de Cadastro ---
         painel_topo = tk.Frame(self, bg="#34495E", height=100)
         painel_topo.pack(side=tk.TOP, fill=tk.X)
 
@@ -247,7 +249,16 @@ class MainWindow(tk.Tk):
         self.criar_botao(painel_topo, "Atualizar", "#2980B9", 380, 40, self.atualizar_loja)
         self.criar_botao(painel_topo, "Deletar", "#C0392B", 470, 40, self.deletar_loja)
 
-        # Usando Treeview como a tabela de Lojas
+        # --- Painel de Busca ---
+        painel_busca = tk.Frame(self, bg="#2C3E50", pady=10)
+        painel_busca.pack(side=tk.TOP, fill=tk.X, padx=20)
+        
+        tk.Label(painel_busca, text="Buscar Loja:", bg="#2C3E50", fg="white", font=("Segoe UI", 10, "bold")).pack(side=tk.LEFT)
+        self.txt_busca_loja = tk.Entry(painel_busca, font=("Segoe UI", 10))
+        self.txt_busca_loja.pack(side=tk.LEFT, padx=10, fill=tk.X, expand=True)
+        self.txt_busca_loja.bind("<KeyRelease>", self.filtrar_lojas)
+
+        # --- Tabela (Treeview) ---
         style = ttk.Style()
         style.theme_use("clam")
         style.configure("Treeview", background="#ECF0F1", foreground="black", rowheight=30, fieldbackground="#ECF0F1")
@@ -267,13 +278,22 @@ class MainWindow(tk.Tk):
         return btn
 
     def carregar_lojas(self):
-        lojas = DatabaseHelper.carregar_dados()
-        self.tree.delete(*self.tree.get_children())
-        for loja in lojas:
-            self.tree.insert("", tk.END, values=(loja["Nome"],))
+        self.lojas_completas = DatabaseHelper.carregar_dados()
+        self.atualizar_treeview(self.lojas_completas)
         
         self.nome_loja_original = ""
         self.txt_nome_loja.delete(0, tk.END)
+        self.txt_busca_loja.delete(0, tk.END)
+
+    def atualizar_treeview(self, lista_lojas):
+        self.tree.delete(*self.tree.get_children())
+        for loja in lista_lojas:
+            self.tree.insert("", tk.END, values=(loja["Nome"],))
+
+    def filtrar_lojas(self, event=None):
+        termo = self.txt_busca_loja.get().lower()
+        lojas_filtradas = [l for l in self.lojas_completas if termo in l["Nome"].lower()]
+        self.atualizar_treeview(lojas_filtradas)
 
     def selecionar_loja(self, event):
         item_selecionado = self.tree.selection()
